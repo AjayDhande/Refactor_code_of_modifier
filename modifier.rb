@@ -6,10 +6,7 @@ def latest(name)
   files = Dir["#{ ENV["HOME"] }/workspace/*#{name}*.txt"]
 
   files.sort_by! do |file|
-    last_date = /\d+-\d+-\d+_[[:alpha:]]+\.txt$/.match file
-    last_date = last_date.to_s.match /\d+-\d+-\d+/
-
-    date = DateTime.parse(last_date.to_s)
+    date  = DateTime.parse(((/\d+-\d+-\d+_[[:alpha:]]+\.txt$/.match file).to_s.match /\d+-\d+-\d+/).to_s)
     date
   end
 
